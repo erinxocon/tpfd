@@ -60,3 +60,6 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+/.vs/tpfd/v14
+*.pyproj
+*.sln
