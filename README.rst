@@ -1,5 +1,5 @@
-TPFD - Text Based Function Dispatcher
-=====================================
+TPFD - Text Parsing Function Dispatcher
+=======================================
 
 .. code-block:: python
 
