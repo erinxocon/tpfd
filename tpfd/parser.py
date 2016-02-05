@@ -1,6 +1,6 @@
 """
-Speech Rule Decorator Module
-Need to add docstring
+parser.py
+This contains the main Parser class that can be instantiated to create rules.
 """
 import logging
 from .rules import RuleMap
@@ -9,8 +9,8 @@ from parse import parse
 
 class Parser(object):
     """
-    Speech Rule Decorator class
-    Accepts an optional audio source input from the speech_recognition module
+    Parser exposes a couple methods for reading in strings.
+    Currently only parse_file is working.
     """
 
     def __init__(self):
