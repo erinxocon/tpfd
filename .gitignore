@@ -63,3 +63,7 @@ target/
 /.vs/tpfd/v14
 *.pyproj
 *.sln
+*.user
+*.user
+
+.gitattributes
