@@ -15,7 +15,7 @@ TPFD - Text parsing based function dispatcher
             animal = kwargs.get('animal')
             print('I like {0}.'.format(animal))
     
-    >>> p.parse('animals.txt')
+    >>> p.parse_file('animals.txt')
     'I like turtles.'
     'I like sloths.'
 
