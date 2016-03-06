@@ -40,4 +40,4 @@ class Parser(object):
     def parse_string(self, string):
         if self.debug:
             logging.debug(string)
-        self._rule_map.query(string)
+        return self._rule_map.query(string)

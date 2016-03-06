@@ -22,8 +22,7 @@ class RuleMap(defaultdict):
         key_registry = []
         try:
             for key in self.keys():
-                key_registry.append({'key': key,
-                                    'parse_resp': parse(key, string.lower())})
+                key_registry.append({'key': key, 'parse_resp': parse(key, string.lower())})
 
             key_registry = [x for x in key_registry if x['parse_resp']]
 
