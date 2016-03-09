@@ -29,9 +29,10 @@ class Parser(object):
         return eventdecorator
 
     def parse_file(self, file):
-        with open(file, 'r') as f:
-            for line in f:
-                self._rule_map.query(line)
+        raise NotImplamentedError()
+        # with open(file, 'r') as f:
+        #     for line in f:
+        #         self._rule_map.query(line)
 
     def iter_parse(self, iterable):
         for item in iterable:
