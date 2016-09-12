@@ -10,6 +10,8 @@ p.debug = True
 
 LIST_RESULTS = []
 
+FILE_RESULTS = []
+
 
 @p.on_recognize('{Animal} are cool')
 def main(kwargs):
@@ -21,6 +23,11 @@ def main(kwargs):
 def list_test(kwargs):
     number = kwargs.get('number')
     LIST_RESULTS.append(True)
+
+@p.on_recognize('{Animal} beats Battlestar galactica')
+def file_test(kwargs):
+    FILE_RESULTS.append(True)
+    
 
 
 def test_string_parse1():
@@ -39,6 +46,12 @@ def test_iter_parse1():
     l = ['List test 1', 'List test 2', 'List antitest 1']
     p.iter_parse(l)
     assert 2 == len(LIST_RESULTS)
+
+def test_iter_file1():
+    p.parse_file('Test.txt')
+    assert 1 == len(FILE_RESULTS)
+    
+    
 
 
 if __name__ == '__main__':
