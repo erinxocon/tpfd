@@ -6,7 +6,7 @@ from parse import parse
 class RuleMap(defaultdict):
     def __init__(self, default_factory, *args, **dict):
         self.debug = True
-        return super().__init__(default_factory, *args, **dict)
+        return super(RuleMap, self).__init__(default_factory, *args, **dict)
 
     def add_rule(self, rule, func):
         self[rule.lower()].append(func)
@@ -38,7 +38,6 @@ class RuleMap(defaultdict):
 
         except KeyError as error:
             logging.debug("Rule '{0} not found or matched.'".format(error))
-
 
 class Rule(object):
     pass
