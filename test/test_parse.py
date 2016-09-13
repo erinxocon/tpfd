@@ -31,6 +31,12 @@ def file_test(kwargs):
 def int_test(kwargs):
     number = kwargs.get('number')
     return number
+
+@p.on_recognize('The {noun} who say {thing}!')
+def two_word_test(kwargs):
+    noun = kwargs.get('noun')
+    exp = kwargs.get('thing')
+    return (noun, exp)
     
 
 def test_string_parse1():
@@ -43,6 +49,9 @@ def test_string_parse2():
 
 def test_string_parse3():
     assert p.parse_string('Bears beats Battle Star Galactica') == None
+
+def test_string_parse4():
+    assert p.parse_string('The knights who say Ni!') == ('knights', 'ni')
 
 
 def test_iter_parse1():
