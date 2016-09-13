@@ -67,3 +67,4 @@ target/
 *.user
 
 .gitattributes
+.vs/Text-Parsing-Function-Dispatcher/v14/.suo

@@ -18,7 +18,6 @@ def main(kwargs):
     animal = kwargs.get('animal')
     return animal
 
-
 @p.on_recognize('List test {number}')
 def list_test(kwargs):
     number = kwargs.get('number')
@@ -27,8 +26,12 @@ def list_test(kwargs):
 @p.on_recognize('{Animal} beats Battlestar galactica')
 def file_test(kwargs):
     FILE_RESULTS.append(True)
-    
 
+@p.on_recognize('The awnser is {number:d}')
+def int_test(kwargs):
+    number = kwargs.get('number')
+    return number
+    
 
 def test_string_parse1():
     assert p.parse_string('Sloths are cool') == 'sloths'
@@ -50,6 +53,9 @@ def test_iter_parse1():
 def test_iter_file1():
     p.parse_file('Test.txt')
     assert 1 == len(FILE_RESULTS)
+
+def test_int_parse1():
+    assert p.parse_string('The awnser is 42') == 42
     
     
 
