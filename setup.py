@@ -8,4 +8,11 @@ setup(name='tpfd',
       author_email='erinocon5@gmail.com',
       license='MIT',
       packages=['tpfd'],
-      zip_safe=False)
+      zip_safe=False,
+      classifiers=(
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+    ))
