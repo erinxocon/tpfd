@@ -66,8 +66,6 @@ def test_iter_file1():
 def test_int_parse1():
     assert p.parse_string('The awnser is 42') == 42
     
-    
-
 
 if __name__ == '__main__':
     pytest.main()
