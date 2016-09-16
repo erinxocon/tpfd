@@ -34,10 +34,11 @@ class RuleMap(defaultdict):
                     if self.debug:
                         logging.debug(i['parse_resp'].named)
                         logging.debug(func)
-                    return func(i['parse_resp'].named)
+                    return func(**i['parse_resp'].named)
 
         except KeyError as error:
             logging.debug("Rule '{0} not found or matched.'".format(error))
+
 
 class Rule(object):
     pass
