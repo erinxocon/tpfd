@@ -1,4 +1,6 @@
 import logging
+#coding=utf-8
+
 from collections import defaultdict
 from parse import parse
 

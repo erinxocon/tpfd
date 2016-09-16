@@ -1,3 +1,5 @@
+#coding=utf-8
+
 """
 parser.py
 This contains the main Parser class that can be instantiated to create rules.

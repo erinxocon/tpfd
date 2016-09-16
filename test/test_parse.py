@@ -1,3 +1,5 @@
+#coding=utf-8
+
 import pytest
 import tpfd
 import logging
@@ -52,6 +54,9 @@ def test_string_parse3():
 
 def test_string_parse4():
     assert p.parse_string('The knights who say Ni!') == ('knights', 'ni')
+
+def test_utf_parse1():
+    assert p.parse_string('The 🇬🇧 who say ⚡️!') == ('🇬🇧', '⚡️')
 
 
 def test_iter_parse1():
