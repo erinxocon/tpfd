@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name='tpfd',
       version='0.0.2',
       description='Text Parsing Function Dispatcher',
-      url='https://github.com/erinxocon/Text-Parsing-Function-Dispatcher',
+      url='https://github.com/erinxocon/tpfd',
       author="Erin O'Connell",
       author_email='erinocon5@gmail.com',
       license='MIT',
