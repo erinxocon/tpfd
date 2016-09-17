@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 logging.debug('test')
 
 p = tpfd.Parser()
-p.debug = True
+p.debug = False
 
 LIST_RESULTS = []
 
@@ -40,28 +40,28 @@ def two_word_test(noun, thing):
     
 
 def test_string_parse1():
-    assert p.parse_string('Sloths are cool') == 'sloths'
+    assert p.parse('Sloths are cool') == 'sloths'
 
 
 def test_string_parse2():
-    assert p.parse_string('Turtles are cool') == 'turtles'
+    assert p.parse('Turtles are cool') == 'turtles'
 
 
 def test_string_parse3():
-    assert p.parse_string('Bears beats Battle Star Galactica') == None
+    assert p.parse('Bears beats Battle Star Galactica') == None
 
 
 def test_string_parse4():
-    assert p.parse_string('The knights who say Ni!') == ('knights', 'ni')
+    assert p.parse('The knights who say Ni!') == ('knights', 'ni')
 
 
 def test_utf_parse1():
-    assert p.parse_string('The 🇬🇧 who say ⚡️!') == ('🇬🇧', '⚡️')
+    assert p.parse('The 🇬🇧 who say ⚡️!') == ('🇬🇧', '⚡️')
 
 
 def test_iter_parse1():
     l = ['List test 1', 'List test 2', 'List antitest 1']
-    p.iter_parse(l)
+    p.parse(l)
     assert 2 == len(LIST_RESULTS)
 
 
@@ -71,7 +71,7 @@ def test_iter_file1():
 
 
 def test_int_parse1():
-    assert p.parse_string('The awnser is 42') == 42
+    assert p.parse('The awnser is 42') == 42
     
 
 if __name__ == '__main__':
