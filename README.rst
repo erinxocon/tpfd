@@ -1,6 +1,6 @@
 TPFD - Text Parsing Function Dispatcher
 =======================================
-.. image:: https://travis-ci.org/erinxocon/tpfd.svg?branch=development
+.. image:: https://travis-ci.org/erinxocon/tpfd.svg?branch=master
     :target: https://travis-ci.org/erinxocon/tpfd
 
 **TPFD** is an easy way to parse strings and execute functions depending on their contents.  
