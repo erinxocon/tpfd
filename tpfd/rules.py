@@ -47,6 +47,3 @@ class RuleMap(defaultdict):
         except KeyError as error:
             logging.debug("Rule '{0} not found or matched.'".format(error))
 
-
-class Rule(object):
-    pass
