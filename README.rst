@@ -19,8 +19,7 @@ Examples
     >>> p  = tpfd.Parser()
 
     >>> @p.on_recognize('{Animal} are cool')
-        def main(kwargs):
-            animal = kwargs.get('animal')
+        def main(animal):
             print('I like {0}.'.format(animal))
     
     >>> p.parse_file('animals.txt')
