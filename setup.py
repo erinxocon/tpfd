@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='tpfd',
-      version='0.0.2',
+      version='0.0.4',
       description='Text Parsing Function Dispatcher',
       url='https://github.com/erinxocon/tpfd',
       author="Erin O'Connell",
