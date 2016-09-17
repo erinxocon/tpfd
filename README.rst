@@ -5,7 +5,7 @@ TPFD - Text Parsing Function Dispatcher
 
 **TPFD** is an easy way to parse strings and execute functions depending on their contents.  
 
-Inspired by `flask <https://github.com/mitsuhiko/flask>`_ and using `parse <https://github.com/r1chardj0n3s/parse>`_ under the hood, this allows you to decorate functions with grammar rules and if a pattern that matches one of your grammar rules is found, the function will be run with a set of keyword arguments you've specified passed to it!  Great for parsing logs and executing macros on what it finds! 
+Inspired by `Flask <https://github.com/mitsuhiko/flask>`_ and using `Parse <https://github.com/r1chardj0n3s/parse>`_ under the hood, this allows you to decorate functions with grammar rules and if a pattern that matches one of your grammar rules is found, the function will be run with a set of keyword arguments you've specified passed to it!  Great for parsing logs and executing macros on what it finds! 
 
 Examples
 --------
@@ -58,4 +58,4 @@ Current Features
 
 TODO
 ----
-* change API so that iter_parse and parse_string are just one method: parse
+* Improve API with new ``parse`` method, which utilizes either ``iter_parse`` or ``parse_string`` automatically.
