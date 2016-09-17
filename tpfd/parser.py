@@ -22,7 +22,7 @@ class Parser(object):
     def on_recognize(self, eventname):
         """
         Decorator for rules. Calls the associated functions when the rule
-        is invoked via voice
+        is invoked via parse found
         """
         def eventdecorator(func):
             """Event decorator closure thing"""
@@ -43,3 +43,9 @@ class Parser(object):
         if self.debug:
             logging.debug(string)
         return self._rule_map.query(string)
+
+    def parse(self, item):
+        if isinstance(item,  basestring):
+            return self.parse_string(item)
+        else:
+            self.iter_parse(item)
