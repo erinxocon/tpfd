@@ -11,7 +11,10 @@ class RuleMap(defaultdict):
         return super(RuleMap, self).__init__(default_factory, *args, **dict)
 
     def add_rule(self, rule, func):
-        self[rule.lower()].append(func)
+        try:
+            self[rule.lower()].append(func)
+        except AttributeError:
+            self[rule].append(func)
 
     def query(self, string):
         """
@@ -24,7 +27,10 @@ class RuleMap(defaultdict):
         key_registry = []
         try:
             for key in self.keys():
-                key_registry.append({'key': key, 'parse_resp': parse(key, string.lower())})
+                try:
+                    key_registry.append({'key': key, 'parse_resp': parse(key, string.lower())})
+                except AttributeError:
+                    key_registry.append({'key': key, 'parse_resp': parse(key, str(string))})
 
             key_registry = [x for x in key_registry if x['parse_resp']]
 
