@@ -52,10 +52,10 @@ Current Features
 ----------------
 
 * Support for parsing text files
-* Support for accepting generators that output text.
+* Support for accepting generators that output text or ints
+* Support for parsing unicode strings
 
 
 TODO
 ----
-* Support streams
-* various built in converters to translate numbers/day names/dates
+* change API so that iter_parse and parse_string are just one method: parse
