@@ -26,14 +26,14 @@ Examples
     'I like turtles.'
     'I like sloths.'
 
-    >>> p.iter_parse(['Turtles are cool', 'Sloths are cool', 'Mosquitos are dumb'])
+    >>> p.parse(['Turtles are cool', 'Sloths are cool', 'Mosquitos are dumb'])
     'I like turtles.'
     'I like sloths.'
 	
-    >>> p.parse_string('Sloths are cool')
+    >>> p.parse('Sloths are cool')
     'I like sloths.'
 	
-    >>> p.parse_string('Mosquitos are dumb')
+    >>> p.parse('Mosquitos are dumb')
     None
 
 To Install
@@ -54,8 +54,9 @@ Current Features
 * Support for parsing text files
 * Support for accepting generators that output text or ints
 * Support for parsing unicode strings
+* Supports parsing strings, ints and interator/generator's automagically with new ``parse`` method.  
 
 
 TODO
 ----
-* Improve API with new ``parse`` method, which utilizes either ``iter_parse`` or ``parse_string`` automatically.
+* Expose custom types functionality that `Parse <https://github.com/r1chardj0n3s/parse>`_ already offers
