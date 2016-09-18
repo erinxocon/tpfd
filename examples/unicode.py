@@ -7,13 +7,13 @@ def two_word_test(noun, thing):
     print (noun, thing)
 
 def utf_parse1():
-    p.parse_string('The ???? who say ??!')
+    p.parse('The ???? who say ??!')
 
 def utf_parse2():
-    p.parse_string('The ?? who say chipmunk!')
+    p.parse('The ?? who say chipmunk!')
 
 def utf_parse3():
-    p.parse_string('The ? who say ??!')
+    p.parse('The ? who say ??!')
 
 if __name__ == '__main__':
     utf_parse1()

@@ -7,7 +7,7 @@ def two_word_test(number):
     print (type(number), number)
 
 def int_parse1():
-    p.parse_string('The answer is 42')
+    p.parse('The answer is 42')
 
 
 if __name__ == '__main__':

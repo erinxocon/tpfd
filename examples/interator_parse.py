@@ -8,7 +8,7 @@ def two_word_test(number):
         print(number)
 
 def iter_parse():
-    p.iter_parse(range(0,10))
+    p.parse(range(0,10))
 
 if __name__ == '__main__':
     iter_parse()
