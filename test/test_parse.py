@@ -4,6 +4,8 @@ import pytest
 import tpfd
 import logging
 
+from tpfd import with_pattern
+
 logging.basicConfig(level=logging.DEBUG)
 logging.debug('test')
 
@@ -15,28 +17,32 @@ LIST_RESULTS = []
 FILE_RESULTS = []
 
 
-@p.on_recognize('{Animal} are cool')
+@p.on_parse('{Animal} are cool')
 def main(animal):
     return animal
 
-@p.on_recognize('List test {number}')
+@p.on_parse('List test {number}')
 def list_test(number):
     LIST_RESULTS.append(True)
 
 
-@p.on_recognize('{Animal} beats Battlestar galactica')
+@p.on_parse('{Animal} beats Battlestar galactica')
 def file_test(animal):
     FILE_RESULTS.append(True)
 
 
-@p.on_recognize('The awnser is {number:d}')
+@p.on_parse('The awnser is {number:d}')
 def int_test(number):
     return number
 
 
-@p.on_recognize('The {noun} who say {thing}!')
+@p.on_parse('The {noun} who say {thing}!')
 def two_word_test(noun, thing):
     return (noun, thing)
+
+@p.on_find('>{}<')
+def two_word_test(words):
+    print (words)
     
 
 def test_string_parse1():
@@ -57,6 +63,10 @@ def test_string_parse4():
 
 def test_utf_parse1():
     assert p.parse('The 🇬🇧 who say ⚡️!') == ('🇬🇧', '⚡️')
+
+
+def test_string_find():
+    p.find_string('<p>the <b>bold</b> text</p>') == 'the bold text'
 
 
 def test_iter_parse1():
