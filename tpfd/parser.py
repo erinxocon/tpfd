@@ -17,35 +17,50 @@ class Parser(object):
     def __init__(self):
         """Initalizer"""
         self.debug = False
-        self._rule_map = RuleMap(list)
+        self._parse_rule_map = RuleMap(list)
+        self._find_rule_map = RuleMap(list)
 
-    def on_recognize(self, eventname):
+    def on_parse(self, eventname):
         """
         Decorator for rules. Calls the associated functions when the rule
         is invoked via parse found
         """
-        def eventdecorator(func):
+        def parse_decorator(func):
             """Event decorator closure thing"""
-            self._rule_map.add_rule(eventname, func)
+            self._parse_rule_map.add_rule(eventname, func)
             return func
-        return eventdecorator
+        return parse_decorator
+
+    def on_find(self, eventname):
+        """
+        Decorator for rules. Calls the associated functions when the rule
+        is invoked via parse found
+        """
+        def find_decorator(func):
+            """Event decorator closure thing"""
+            self._find_rule_map.add_rule(eventname, func)
+            return func
+        return find_decorator
 
     def parse_file(self, file):
         with open(file, 'r') as f:
             for line in f:
-                self._rule_map.query(line)
+                self._parse_rule_map.query_parse(line)
 
     def iter_parse(self, iterable):
         for item in iterable:
-            self._rule_map.query(item)
+            self._parse_rule_map.query_parse(item)
 
     def parse_string(self, string):
         if self.debug:
             logging.debug(string)
-        return self._rule_map.query(string)
+        return self._parse_rule_map.query_parse(string)
 
     def parse(self, item):
         if isinstance(item,  basestring):
             return self.parse_string(item)
         else:
             self.iter_parse(item)
+
+    def find_string(self, string):
+        self._find_rule_map.query_find(string)
