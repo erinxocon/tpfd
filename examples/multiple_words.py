@@ -2,7 +2,7 @@ import tpfd
 
 p = tpfd.Parser()
 
-@p.on_recognize('Bring {words:^} hand grenade.')
+@p.on_parse('Bring {words:^} hand grenade.')
 def multi_word_test(words):
     print (words)
 

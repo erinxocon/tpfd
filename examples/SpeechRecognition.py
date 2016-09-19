@@ -3,7 +3,7 @@ import tpfd
 
 p = tpfd.Parser()
 
-@p.on_recognize('{Play} song')
+@p.on_parse('{Play} song')
 def main(kwargs):
     print(kwargs.get('play'))
 

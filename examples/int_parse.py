@@ -2,7 +2,7 @@ import tpfd
 
 p = tpfd.Parser()
 
-@p.on_recognize('The answer is {number:d}')
+@p.on_parse('The answer is {number:d}')
 def two_word_test(number):
     print (type(number), number)
 

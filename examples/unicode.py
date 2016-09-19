@@ -2,7 +2,7 @@ import tpfd
 
 p = tpfd.Parser()
 
-@p.on_recognize('The {noun} who say {thing}!')
+@p.on_parse('The {noun} who say {thing}!')
 def two_word_test(noun, thing):
     print (noun, thing)
 

@@ -2,7 +2,7 @@ import tpfd
 
 p = tpfd.Parser()
 
-@p.on_recognize('{number:d}')
+@p.on_parse('{number:d}')
 def two_word_test(number):
     if number < 5:
         print(number)
