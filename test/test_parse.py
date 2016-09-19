@@ -4,8 +4,6 @@ import pytest
 import tpfd
 import logging
 
-from tpfd import with_pattern
-
 logging.basicConfig(level=logging.DEBUG)
 logging.debug('test')
 
