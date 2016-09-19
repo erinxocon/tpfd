@@ -3,6 +3,7 @@ import logging
 
 from collections import defaultdict
 from parse import parse
+from parse import findall
 
 
 class RuleMap(defaultdict):
@@ -16,34 +17,62 @@ class RuleMap(defaultdict):
         except AttributeError:
             self[rule].append(func)
 
-    def query(self, string):
+    def query_parse(self, string):
         """
-        Default allback that looks in the function registry
-        to see if the spoken text is a rule
+        Method that looks in the function registry
+        to see if input text is a rule 
         """
+
         if self.debug:
             logging.debug(string)
 
         key_registry = []
-        try:
-            for key in self.keys():
-                try:
-                    key_registry.append({'key': key, 'parse_resp': parse(key, string.lower())})
-                except AttributeError:
-                    key_registry.append({'key': key, 'parse_resp': parse(key, str(string))})
 
-            key_registry = [x for x in key_registry if x['parse_resp']]
+        try:
+            #run through all keys and try and parse against them 
+            for key in self.keys():
+
+                key_registry.append({'key': key, 'parse_resp': parse(key, str(string).lower())})
+
+            #get rid of false keys or None responses
+            key_registry = [x for x in key_registry if x['parse_resp'] is not None]
 
             if self.debug:
                 logging.debug(key_registry)
-
+            
+            #get key from registry
             for i in key_registry:
+                
+                #qury self dictionary for matching key and function
                 for func in self.get(i['key']):
-                    if self.debug:
-                        logging.debug(i['parse_resp'].named)
-                        logging.debug(func)
+                    
                     return func(**i['parse_resp'].named)
 
         except KeyError as error:
             logging.debug("Rule '{0} not found or matched.'".format(error))
+
+
+    def query_find(self, string):
+        
+        key_registry = []
+        
+        for key in self.keys():
+
+            key_registry.append({'key': key, 'find_resp': findall(key, str(string).lower())})
+
+        key_registry = [x for x in key_registry if x['find_resp'] is not None]
+
+        joined = ''
+
+        for i in key_registry:
+
+            for j in i['find_resp']:
+
+                joined += j[0]
+
+            for func in self.get(i['key']):
+
+                return func(joined)
+
+
 
