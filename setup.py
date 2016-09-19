@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='tpfd',
-      version='0.1.0',
+      version='0.1.1',
       description='Text Parsing Function Dispatcher',
       url='https://github.com/erinxocon/tpfd',
       author="Erin O'Connell",
@@ -19,6 +19,5 @@ setup(name='tpfd',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: Implementation :: PyPy'
-      ),
+        'Programming Language :: Python :: Implementation :: PyPy'),
        install_requires=['parse'])
