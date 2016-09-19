@@ -20,9 +20,13 @@ Examples
 
     >>> p  = tpfd.Parser()
 
-    >>> @p.on_recognize('{Animal} are cool')
+    >>> @p.on_parse('{Animal} are cool')
         def main(animal):
             print('I like {0}.'.format(animal))
+    
+    >>> @p.on_find('>{}<')
+	def find_example(words):
+	    print (words)
     
     >>> p.parse_file('animals.txt')
     'I like turtles.'
@@ -37,6 +41,9 @@ Examples
 	
     >>> p.parse('Mosquitos are dumb')
     None
+    
+    >>> p.find_string('<p>the <b>bold</b> text</p>')
+    'the bold text'
 
 To Install
 ----------
