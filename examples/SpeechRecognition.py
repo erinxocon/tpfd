@@ -3,9 +3,9 @@ import tpfd
 
 p = tpfd.Parser()
 
-@p.on_parse('{Play} song')
-def main(kwargs):
-    print(kwargs.get('play'))
+@p.on_parse('{Action} song')
+def main(action):
+    print(action)
 
 # obtain audio from the microphone
 r = sr.Recognizer()
@@ -17,4 +17,4 @@ with sr.Microphone() as source:
 try:
     string = r.recognize_google(audio)
     print("Google Speech Recognition thinks you said " + string)
-    p.parse_string(string)
+    p.parse(string)
