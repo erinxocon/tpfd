@@ -61,8 +61,11 @@ class Parser(object):
 
 
     def parse(self, item):
-        if isinstance(item,  basestring):
+        if sys.version_info[0] == 3 and isinstance(item,  str):
             return self.parse_string(item)
+
+        elif sys.version_info[0] == 2 and isinstance(item,  basestring):
+                return self.parse_string(item)
         else:
             self.iter_parse(item)
 
@@ -83,14 +86,10 @@ class Parser(object):
 
 
     def find(self, item):
-        if sys.version_info[0] == 3:
-            if isinstance(item,  str):
-                return self.find_string(item)
-            else:
-                self.iter_find(item)
+        if sys.version_info[0] == 3 and isinstance(item,  str):
+            return self.find_string(item)
 
-        elif sys.version_info[0] == 2:
-            if isinstance(item,  basestring):
+        elif sys.version_info[0] == 2 and isinstance(item,  basestring):
                 return self.find_string(item)
-            else:
-                self.iter_find(item)
+        else:
+            self.iter_find(item)
