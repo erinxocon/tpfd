@@ -10,7 +10,9 @@ logging.debug('test')
 p = tpfd.Parser()
 p.debug = False
 
-LIST_RESULTS = []
+PARSE_LIST_RESULTS = []
+
+FIND_LIST_RESULTS = []
 
 FILE_RESULTS = []
 
@@ -21,7 +23,7 @@ def main(animal):
 
 @p.on_parse('List test {number}')
 def list_test(number):
-    LIST_RESULTS.append(True)
+    PARSE_LIST_RESULTS.append(True)
 
 
 @p.on_parse('{Animal} beats Battlestar galactica')
@@ -38,8 +40,14 @@ def int_test(number):
 def two_word_test(noun, thing):
     return (noun, thing)
 
+
 @p.on_find('>{}<')
-def two_word_test(words):
+def html_find(words):
+    FIND_LIST_RESULTS.append(True)
+
+
+@p.on_find('the')
+def word_find(words):
     print (words)
     
 
@@ -63,18 +71,28 @@ def test_utf_parse1():
     assert p.parse('The 🇬🇧 who say ⚡️!') == ('🇬🇧', '⚡️')
 
 
-def test_string_find():
-    p.find_string('<p>the <b>bold</b> text</p>') == 'the bold text'
+def test_string_find1():
+    p.find('The man drove the car to the store.') == 'the the the'
+
+
+def test_string_find3():
+    p.find('This string should return None') == None
 
 
 def test_iter_parse1():
     l = ['List test 1', 'List test 2', 'List antitest 1']
     p.parse(l)
-    assert 2 == len(LIST_RESULTS)
+    assert 2 == len(PARSE_LIST_RESULTS)
 
 
-def test_iter_file1():
-    p.parse_file('Test.txt')
+def test_iter_find1():
+    l = ['<p>the <b>bold</b> text</p>', '<p>the <i>italicized</i> text</p>', 'This statement has no html tags']
+    p.find(l)
+    assert 5 == len(FIND_LIST_RESULTS)
+
+
+def test_iter_parse_file1():
+    p.parse_file('Test1.txt')
     assert 1 == len(FILE_RESULTS)
 
 
