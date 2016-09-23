@@ -23,9 +23,6 @@ class RuleMap(defaultdict):
         to see if input text is a rule 
         """
 
-        if self.debug:
-            logging.debug(string)
-
         key_registry = []
 
         try:
@@ -36,9 +33,6 @@ class RuleMap(defaultdict):
 
             #get rid of false keys or None responses
             key_registry = [x for x in key_registry if x['parse_resp'] is not None]
-
-            if self.debug:
-                logging.debug(key_registry)
             
             #get key from registry
             for i in key_registry:
