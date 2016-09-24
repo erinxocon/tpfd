@@ -5,7 +5,7 @@ parser.py
 This contains the main Parser class that can be instantiated to create rules.
 """
 from .rules import RuleMap
-import sys
+from .compat import basestring
 
 
 class Parser(object):
@@ -61,11 +61,8 @@ class Parser(object):
 
 
     def parse(self, item):
-        if sys.version_info[0] == 3 and isinstance(item,  str):
+        if isinstance(item,  basestring):
             return self.parse_string(item)
-
-        elif sys.version_info[0] == 2 and isinstance(item,  basestring):
-                return self.parse_string(item)
         else:
             self.iter_parse(item)
 
@@ -86,10 +83,7 @@ class Parser(object):
 
 
     def find(self, item):
-        if sys.version_info[0] == 3 and isinstance(item,  str):
+        if isinstance(item,  basestring):
             return self.find_string(item)
-
-        elif sys.version_info[0] == 2 and isinstance(item,  basestring):
-                return self.find_string(item)
         else:
             self.iter_find(item)
