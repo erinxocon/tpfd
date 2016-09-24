@@ -12,4 +12,6 @@ install:
   - pip install -r requirements.txt
   - python setup.py install
 # command to run tests
-script: python test/test_parse.py
+script:
+ - cd test 
+ - python test_parse.py
