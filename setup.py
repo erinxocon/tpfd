@@ -1,5 +1,7 @@
 from setuptools import setup
+from codecs import open
 import re
+
 
 
 with open('tpfd/__init__.py', 'r') as fd:
