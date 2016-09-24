@@ -1,4 +1,5 @@
 from setuptools import setup
+import re
 
 
 with open('tpfd/__init__.py', 'r') as fd:
@@ -8,6 +9,9 @@ with open('tpfd/__init__.py', 'r') as fd:
 with open('tpfd/__init__.py', 'r') as fd:
     license = re.search(r'^__license__\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
+
+with open('README.rst', 'r', 'utf-8') as f:
+    readme = f.read()
 
 CLASSIFIERS = (
         'Intended Audience :: Developers',
@@ -24,6 +28,7 @@ CLASSIFIERS = (
 setup(name='tpfd',
       version=version,
       description='Text Parsing Function Dispatcher',
+      long_description=readme,
       url='https://github.com/erinxocon/tpfd',
       author="Erin O'Connell",
       author_email='erinocon5@gmail.com',
