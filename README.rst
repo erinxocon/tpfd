@@ -2,8 +2,10 @@ TPFD - Text Parsing Function Dispatcher
 =======================================
 .. image:: https://travis-ci.org/erinxocon/tpfd.svg?branch=master
     :target: https://travis-ci.org/erinxocon/tpfd
-.. image:: https://img.shields.io/pypi/v/tpfd.svg?maxAge=2592000   :target: 
-.. image:: https://img.shields.io/pypi/l/tpfd.svg?maxAge=2592000   :target: 
+.. image:: https://img.shields.io/pypi/v/tpfd.svg?maxAge=2592000   
+    :target: https://pypi.python.org/pypi/tpfd/
+.. image:: https://img.shields.io/pypi/l/tpfd.svg?maxAge=2592000   
+    :target: https://opensource.org/licenses/MIT
 
 **TPFD** is an easy way to parse strings and execute functions depending on their contents.  
 
