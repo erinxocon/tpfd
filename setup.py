@@ -1,5 +1,13 @@
 from setuptools import setup
-from tpfd import __version__, __license__, __copyright__
+
+
+with open('tpfd/__init__.py', 'r') as fd:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                        fd.read(), re.MULTILINE).group(1)
+
+with open('tpfd/__init__.py', 'r') as fd:
+    license = re.search(r'^__license__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                        fd.read(), re.MULTILINE).group(1)
 
 CLASSIFIERS = (
         'Intended Audience :: Developers',
@@ -14,12 +22,12 @@ CLASSIFIERS = (
 
 
 setup(name='tpfd',
-      version=__version__,
+      version=version,
       description='Text Parsing Function Dispatcher',
       url='https://github.com/erinxocon/tpfd',
       author="Erin O'Connell",
       author_email='erinocon5@gmail.com',
-      license=__license__,
+      license=license,
       packages=['tpfd'],
       zip_safe=False,
       classifiers=CLASSIFIERS,
