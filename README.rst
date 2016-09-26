@@ -44,7 +44,7 @@ Examples
 	def find_example(words):
     	print (words)
     
-    >>> p.find_string('<p>the <b>bold</b> text</p>')
+    >>> p.find('<p>the <b>bold</b> text</p>')
     'the bold text'
 
 To Install
