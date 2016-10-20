@@ -46,21 +46,25 @@ class Parser(object):
 
 
     def parse_file(self, file):
+        """Parses through a file"""
         with open(file, 'r') as f:
             for line in f:
                 self._parse_rule_map.query_parse(line)
 
 
     def iter_parse(self, iterable):
+        """Parses an interator/generator"""
         for item in iterable:
             self._parse_rule_map.query_parse(item)
 
 
     def parse_string(self, string):
+        """Parses and int or string"""
         return self._parse_rule_map.query_parse(string)
 
 
     def parse(self, item):
+        """Magical method that automatically chooses parse string or iter parse"""
         if isinstance(item,  basestring):
             return self.parse_string(item)
         else:
@@ -68,21 +72,25 @@ class Parser(object):
 
 
     def find_string(self, string):
+        """finds an int or string based on input pattern"""
         return self._find_rule_map.query_find(string)
 
 
     def iter_find(self, iterable):
+        """Finds an string based on an input pattern and interable/generator"""
         for item in iterable:
             self._find_rule_map.query_find(item)
 
 
     def find_file(self, file):
+        """find a string based on an input pattern from a file"""
         with open(file, 'r') as f:
             for line in f:
                 self._parse_rule_map.query_parse(line)
 
 
     def find(self, item):
+        """Magical method that chooses between iter_find and find_string"""
         if isinstance(item,  basestring):
             return self.find_string(item)
         else:

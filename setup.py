@@ -1,17 +1,19 @@
+import re
 from setuptools import setup
 from codecs import open
-import re
 
 
-
+#get version number from package init
 with open('tpfd/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
+#get licence from package init
 with open('tpfd/__init__.py', 'r') as fd:
     license = re.search(r'^__license__\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
+#get readme
 with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
 
