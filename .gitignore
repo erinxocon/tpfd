@@ -68,3 +68,5 @@ target/
 
 .gitattributes
 .vs/Text-Parsing-Function-Dispatcher/v14/.suo
+
+/.vs/tpfd/v15/.suo
