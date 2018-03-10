@@ -1,6 +1,6 @@
 #coding=utf-8
 from collections import defaultdict
-from requests_html import HTMLSession, HTMLResponse, _URL
+from requests_html import HTMLResponse
 from typing import Text, List
 
 import requests
@@ -15,43 +15,57 @@ except AssertionError:
     raise RuntimeError('TPFD requires Python 3.6+!')
 
 
-
 class Rule:
 
-    def __init__(self, rule: Text, func: callable, rule_type: Text) -> None:
+    def __init__(self, rule: Text, func: callable, rule_type: Text, first: bool = False) -> None:
         self._rule = rule
         self._func = func
         self._rule_type = rule_type
+        self._first = first
+
 
     @property
     def rule(self) -> Text:
         return self._rule
 
+
     @property
     def function(self) -> callable:
         return self._func
+
 
     @property
     def rule_type(self) -> Text:
         return self._rule_type
 
 
+    @property
+    def first(self) -> bool:
+        return self._first
 
 
 class TPFD:
 
-    def __init__(self):
+    def __init__(self, response: HTMLResponse) -> None:
         self.debug = False
         self._rules = []
-        self._result = None
+        self._response = response
+
 
     @property
-    def rules(self)  -> List:
+    def rules(self) -> List:
         return self._rules
 
+
     @property
-    def result(self) -> HTMLResponse:
+    def response(self) -> HTMLResponse:
         return self._result
+
+
+    @response.setter
+    def response(self, response: HTMLResponse) -> None:
+        self._response = response
+
 
     def search_pattern(self, template: Text) -> callable:
         """
@@ -69,7 +83,7 @@ class TPFD:
         Decorator for css selector rules.
         """
         def find_decorator(func: callable) -> callable:
-            self._rules.append(Rule(selector, func, 'find'))
+            self._rules.append(Rule(selector, func, 'find', first))
             return func
 
         return find_decorator
@@ -80,17 +94,24 @@ class TPFD:
         Decorator for xpath selector rules.
         """
         def find_decorator(func: callable) -> callable:
-            self._rules.append(Rule(selector, func, 'xpath'))
+            self._rules.append(Rule(selector, func, 'xpath', first))
             return func
 
-        return find_decorator
+        return xpath_decorator
 
 
-    def parse(self, url: _URL) -> None:
-        self._result = HTMLSession().get(url=url)
+    def parse(self) -> None:
 
-        for rule in self._rules:
-            if rule.rule_type is 'search':
-                r = self._result.html.search(rule.rule)
+        for i in self._rules:
+
+            if i.rule_type is 'search':
+                r = self._response.html.search(i.rule)
+
                 if r is not None:
-                    return rule.function(r[0])
+                    i.function(r[0])
+
+            if i.rule_type is 'find':
+                r = self._response.html.find(i.rule, first=i.first)
+
+                if r is not None:
+                    i.function(r)
