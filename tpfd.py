@@ -1,8 +1,9 @@
 #coding=utf-8
 from collections import defaultdict
-from requests_html import BaseParser
+from requests_html import HTMLSession, HTMLResponse, _URL
 from typing import Text, List
 
+import requests
 import logging
 import sys
 
@@ -42,11 +43,15 @@ class TPFD:
     def __init__(self):
         self.debug = False
         self._rules = []
+        self._result = None
 
     @property
     def rules(self)  -> List:
         return self._rules
 
+    @property
+    def result(self) -> HTMLResponse:
+        return self._result
 
     def search_pattern(self, template: Text) -> callable:
         """
@@ -81,8 +86,11 @@ class TPFD:
         return find_decorator
 
 
-    def parse(self, data: Text) -> None:
-        pass
+    def parse(self, url: _URL) -> None:
+        self._result = HTMLSession().get(url=url)
 
-
-
+        for rule in self._rules:
+            if rule.rule_type is 'search':
+                r = self._result.html.search(rule.rule)
+                if r is not None:
+                    return rule.function(r[0])
